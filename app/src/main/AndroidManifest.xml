@@ -4,6 +4,7 @@
     package="com.example.android.githubbrowser">
 
     <application
+        android:name=".GithubBrowserApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
