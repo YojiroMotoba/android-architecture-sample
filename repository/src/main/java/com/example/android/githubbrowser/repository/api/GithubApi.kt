@@ -29,7 +29,7 @@ interface GithubApi {
     ): ApiResponse<List<Contributor>>
 
     @GET("search/repositories")
-    fun searchRepos(@Query("q") query: String): ApiResponse<RepoSearchResponse>
+    fun searchRepos(@Query("q") query: String): Call<RepoSearchResponse>
 
     @GET("search/repositories")
     fun searchRepos(@Query("q") query: String, @Query("page") page: Int): Call<RepoSearchResponse>

@@ -1,6 +1,7 @@
 package com.example.android.githubbrowser
 
 import android.app.Application
+import com.example.android.githubbrowser.di.applyInjector
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -14,5 +15,10 @@ class GithubBrowserApp : Application(), HasAndroidInjector {
     override fun androidInjector(): AndroidInjector<Any> {
         DaggerAppComponent.builder().application(this).build().inject(this)
         return dispatchingAndroidInjector
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        applyInjector()
     }
 }
