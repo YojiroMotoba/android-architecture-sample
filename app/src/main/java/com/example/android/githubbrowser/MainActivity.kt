@@ -2,11 +2,8 @@ package com.example.android.githubbrowser
 
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import com.example.android.githubbrowser.repository.api.GithubApi
 import com.example.android.githubbrowser.repository.api.response.RepoSearchResponse
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
@@ -14,17 +11,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(R.layout.activity_main), HasAndroidInjector {
-
-    @Inject
-    lateinit var androidInjector: DispatchingAndroidInjector<Any>
+class MainActivity : InjectorAppCompatActivity(R.layout.activity_main), HasAndroidInjector {
 
     @Inject
     lateinit var githubApi: GithubApi
-
-    override fun androidInjector(): AndroidInjector<Any> {
-        return androidInjector
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
