@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.android.githubbrowser">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".GithubBrowserApp"
         android:allowBackup="false"

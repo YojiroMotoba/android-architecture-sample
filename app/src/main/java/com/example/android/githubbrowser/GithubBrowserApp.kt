@@ -12,6 +12,7 @@ class GithubBrowserApp : Application(), HasAndroidInjector {
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
     override fun androidInjector(): AndroidInjector<Any> {
+        DaggerAppComponent.builder().application(this).build().inject(this)
         return dispatchingAndroidInjector
     }
 }
