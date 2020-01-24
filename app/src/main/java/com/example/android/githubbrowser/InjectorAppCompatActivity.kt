@@ -13,9 +13,9 @@ abstract class InjectorAppCompatActivity : AppCompatActivity, HasAndroidInjector
     constructor(contentLayoutId: Int) : super(contentLayoutId)
 
     @Inject
-    var androidInjector: DispatchingAndroidInjector<Any>? = null
+    lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
     override fun androidInjector(): AndroidInjector<Any> {
-        return androidInjector!!
+        return androidInjector
     }
 }
