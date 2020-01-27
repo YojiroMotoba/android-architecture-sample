@@ -1,6 +1,7 @@
 package com.example.android.githubbrowser
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -14,6 +15,9 @@ abstract class InjectorAppCompatActivity : AppCompatActivity, HasAndroidInjector
 
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Any>
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     override fun androidInjector(): AndroidInjector<Any> {
         return androidInjector
