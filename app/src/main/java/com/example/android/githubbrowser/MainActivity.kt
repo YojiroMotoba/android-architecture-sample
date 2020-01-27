@@ -2,10 +2,9 @@ package com.example.android.githubbrowser
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import dagger.android.HasAndroidInjector
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : InjectorAppCompatActivity(R.layout.activity_main), HasAndroidInjector {
+class MainActivity : InjectorAppCompatActivity(R.layout.activity_main) {
 
     private val mainViewModel: MainViewModel by viewModels { viewModelFactory }
 
