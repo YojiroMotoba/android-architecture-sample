@@ -1,8 +1,8 @@
 package com.example.android.githubbrowser.di
 
 import com.example.android.githubbrowser.repository.api.GithubApi
-import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -22,7 +22,7 @@ class RetrofitModule {
 
     @Singleton
     @Provides
-    fun provideOkHttp(moshi: Moshi): OkHttpClient = OkHttpClient.Builder()
+    fun provideOkHttp(): OkHttpClient = OkHttpClient.Builder()
         .connectTimeout(10, TimeUnit.SECONDS)
         .readTimeout(20, TimeUnit.SECONDS)
         .writeTimeout(20, TimeUnit.SECONDS)
