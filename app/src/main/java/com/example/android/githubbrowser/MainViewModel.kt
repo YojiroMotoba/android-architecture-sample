@@ -5,19 +5,29 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.githubbrowser.repository.api.GithubApi
 import com.example.android.githubbrowser.repository.api.response.RepoSearchResponse
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(private val githubApi: GithubApi) : ViewModel() {
 
     fun searchRepos() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             runCatching {
-                githubApi.searchRepos("test")
+                val res = githubApi.searchRepos("test")
+                logtest(res)
+                res
             }
                 .onSuccess { searchReposSuccess(it) }
                 .onFailure { searchReposFailure(it) }
                 .also { searchReposAlso(it) }
+        }
+    }
+
+    private fun logtest(res: RepoSearchResponse) {
+        Log.d("AAA", Thread.currentThread().name)
+        res.items.forEach {
+            it.let { }
         }
     }
 
