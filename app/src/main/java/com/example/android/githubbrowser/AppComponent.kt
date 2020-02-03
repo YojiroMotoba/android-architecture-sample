@@ -21,12 +21,10 @@ interface AppComponent : AndroidInjector<GithubBrowserApp> {
 
     override fun inject(application: GithubBrowserApp)
 
-    @Component.Builder
-    interface Builder {
-
-        @BindsInstance
-        fun application(application: GithubBrowserApp): Builder
-
-        fun build(): AppComponent
+    @Component.Factory
+    interface Factory {
+        fun create(
+            @BindsInstance application: GithubBrowserApp
+        ): AppComponent
     }
 }
