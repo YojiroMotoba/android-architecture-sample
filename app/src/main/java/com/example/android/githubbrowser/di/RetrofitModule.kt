@@ -43,9 +43,4 @@ class RetrofitModule {
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(okHttpClient)
             .build()
-
-    @Provides
-    @Singleton
-    fun provideGithubApi(retrofit: Retrofit): GithubApi =
-        retrofit.create(GithubApi::class.java)
 }
