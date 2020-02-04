@@ -4,6 +4,7 @@ import androidx.room.Room
 import com.example.android.githubbrowser.GithubBrowserApp
 import com.example.android.githubbrowser.repository.api.GithubApi
 import com.example.android.githubbrowser.repository.db.GithubDatabase
+import com.example.android.githubbrowser.repository.db.dao.TokenDao
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -19,8 +20,11 @@ class RepositoryModule {
             .allowMainThreadQueries()
             .build()
 
+    @Singleton
+    @Provides
+    fun provideTokenDao(database: GithubDatabase): TokenDao = database.tokenDao()
+
     @Provides
     @Singleton
-    fun provideGithubApi(retrofit: Retrofit): GithubApi =
-        retrofit.create(GithubApi::class.java)
+    fun provideGithubApi(retrofit: Retrofit): GithubApi = retrofit.create(GithubApi::class.java)
 }

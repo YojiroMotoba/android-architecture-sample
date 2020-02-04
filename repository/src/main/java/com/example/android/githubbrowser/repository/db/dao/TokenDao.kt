@@ -10,7 +10,7 @@ import com.example.android.githubbrowser.repository.db.entity.Token
 interface TokenDao {
 
     @Query("select * from ${Token.TABLE_NAME}")
-    suspend fun get(): Token?
+    suspend fun select(): Token?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(token: Token)

@@ -5,11 +5,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.githubbrowser.repository.api.GithubApi
 import com.example.android.githubbrowser.repository.api.response.RepoSearchResponse
+import com.example.android.githubbrowser.repository.db.dao.TokenDao
+import com.example.android.githubbrowser.repository.db.entity.Token
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(private val githubApi: GithubApi) : ViewModel() {
+class MainViewModel @Inject constructor(
+    private val githubApi: GithubApi,
+    private val tokenDao: TokenDao
+) : ViewModel() {
 
     fun searchRepos() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -22,6 +27,47 @@ class MainViewModel @Inject constructor(private val githubApi: GithubApi) : View
                 .onFailure { searchReposFailure(it) }
                 .also { searchReposAlso(it) }
         }
+    }
+
+    fun insert() {
+        viewModelScope.launch(Dispatchers.IO) {
+            runCatching {
+                tokenDao.insert(Token().also {
+                    it.accessToken = "accessToken"
+                })
+            }
+                .onSuccess { insertSuccess() }
+                .onFailure { insertFailure() }
+        }
+    }
+
+    fun select() {
+        viewModelScope.launch(Dispatchers.IO) {
+            runCatching {
+                tokenDao.select()
+            }
+                .onSuccess { selectSuccess(it) }
+                .onFailure { selectFailure() }
+        }
+    }
+
+    private fun insertSuccess() {
+        Log.d("AAA", "INSERT Success")
+    }
+
+    private fun insertFailure() {
+        Log.d("AAA", "INSERT Failure")
+    }
+
+    private fun selectSuccess(token: Token?) {
+        Log.d("AAA", "select Success")
+        token?.let {
+            Log.d("AAA", "accessToken=${token.accessToken}")
+        }
+    }
+
+    private fun selectFailure() {
+        Log.d("AAA", "select Failure")
     }
 
     private fun logtest(res: RepoSearchResponse) {
