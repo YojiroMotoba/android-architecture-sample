@@ -37,7 +37,7 @@ class MainViewModel @Inject constructor(
                 })
             }
                 .onSuccess { insertSuccess() }
-                .onFailure { insertFailure() }
+                .onFailure { insertFailure(it) }
         }
     }
 
@@ -47,27 +47,47 @@ class MainViewModel @Inject constructor(
                 tokenDao.select()
             }
                 .onSuccess { selectSuccess(it) }
-                .onFailure { selectFailure() }
+                .onFailure { selectFailure(it) }
         }
+    }
+
+    fun delete() {
+        viewModelScope.launch(Dispatchers.IO) {
+            runCatching {
+                tokenDao.delete()
+            }
+                .onSuccess { deleteSuccess(it) }
+                .onFailure { deleteFailure(it) }
+        }
+    }
+
+    private fun deleteSuccess(delete_count: Int) {
+        Log.d("AAA", "DELETE Success $delete_count")
+    }
+
+    private fun deleteFailure(t: Throwable) {
+        Log.d("AAA", "DELETE Failure ${t.message}", t)
     }
 
     private fun insertSuccess() {
         Log.d("AAA", "INSERT Success")
     }
 
-    private fun insertFailure() {
-        Log.d("AAA", "INSERT Failure")
+    private fun insertFailure(t: Throwable) {
+        Log.d("AAA", "INSERT Failure ${t.message}", t)
     }
 
     private fun selectSuccess(token: Token?) {
         Log.d("AAA", "select Success")
-        token?.let {
+        if (token != null) {
             Log.d("AAA", "accessToken=${token.accessToken}")
+        } else {
+            Log.d("AAA", "result not found")
         }
     }
 
-    private fun selectFailure() {
-        Log.d("AAA", "select Failure")
+    private fun selectFailure(t: Throwable) {
+        Log.d("AAA", "select Failure ${t.message}", t)
     }
 
     private fun logtest(res: RepoSearchResponse) {

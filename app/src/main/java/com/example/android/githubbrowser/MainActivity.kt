@@ -13,6 +13,7 @@ class MainActivity : InjectorAppCompatActivity(R.layout.activity_main) {
         request_button.setOnClickListener { request() }
         insert_button.setOnClickListener { insert() }
         select_button.setOnClickListener { select() }
+        delete_button.setOnClickListener { delete() }
     }
 
     private fun request() {
@@ -25,5 +26,9 @@ class MainActivity : InjectorAppCompatActivity(R.layout.activity_main) {
 
     private fun select() {
         mainViewModel.select()
+    }
+
+    private fun delete() {
+        mainViewModel.delete()
     }
 }
