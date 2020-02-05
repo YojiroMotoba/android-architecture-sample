@@ -20,6 +20,10 @@ android {
             dimension "environment"
         }
     }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
