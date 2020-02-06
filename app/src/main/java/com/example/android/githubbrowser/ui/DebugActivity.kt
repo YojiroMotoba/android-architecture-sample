@@ -22,10 +22,11 @@ class DebugActivity : InjectorAppCompatActivity(R.layout.activity_debug) {
         val binding: ActivityDebugBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_debug)
         binding.viewModel = debugViewModel
-
+        binding.lifecycleOwner = this
         activity_list_RecyclerView.layoutManager = LinearLayoutManager(this)
         activity_list_RecyclerView.adapter =
             DebugAdapter(debugViewModel.debugSelfAppInformationList.value!!)
         debugViewModel.searchActivities()
+        add_data_button.setOnClickListener { debugViewModel.searchActivities() }
     }
 }

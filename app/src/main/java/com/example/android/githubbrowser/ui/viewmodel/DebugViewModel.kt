@@ -12,6 +12,7 @@ class DebugViewModel @Inject constructor(
 ) : ViewModel() {
 
     var debugSelfAppInformationList = MutableLiveData<MutableList<DebugSelfAppInformation>>()
+    private var _debugSelfAppInformationList: MutableList<DebugSelfAppInformation> = mutableListOf()
 
     init {
         debugSelfAppInformationList.value = mutableListOf()
@@ -28,6 +29,7 @@ class DebugViewModel @Inject constructor(
                     activityInfo.name.split(".").last()
                 )
             )
+            debugSelfAppInformationList.postValue(debugSelfAppInformationList.value)
         }
     }
 }

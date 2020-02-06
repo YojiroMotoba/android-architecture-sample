@@ -1,9 +1,12 @@
 package com.example.android.githubbrowser.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.android.githubbrowser.R
 import com.example.android.githubbrowser.databinding.ItemDebugRecyclerViewBinding
 
 
@@ -11,35 +14,36 @@ class DebugAdapter(private var dataList: List<DebugSelfAppInformation>) :
     RecyclerView.Adapter<DebugAdapter.BindingHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        BindingHolder(
-            ItemDebugRecyclerViewBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+        BindingHolder(parent)
 
     override fun onBindViewHolder(holder: BindingHolder, position: Int) {
-        holder.binding.apply {
-            debugSelfAppInformation = dataList[position]
-        }
+        holder.bind(dataList[position])
     }
 
     override fun getItemCount() = dataList.size
-
-    fun setData(items: List<DebugSelfAppInformation>) {
-        dataList = items
-        notifyDataSetChanged()
-    }
 
     companion object {
         @JvmStatic
         @BindingAdapter("items")
         fun RecyclerView.bindItems(items: List<DebugSelfAppInformation>) {
-            (adapter as DebugAdapter).setData(items)
+            Log.d("AAA", "RecyclerView.bindItems")
+            adapter?.notifyDataSetChanged()
         }
     }
 
-    class BindingHolder(var binding: ItemDebugRecyclerViewBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    class BindingHolder(
+        private val parent: ViewGroup,
+        private val binding: ItemDebugRecyclerViewBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context),
+            R.layout.item_debug_recycler_view,
+            parent,
+            false
+        )
+    ) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: DebugSelfAppInformation) {
+            binding.debugSelfAppInformation = item
+            binding.executePendingBindings()
+        }
+    }
 }
