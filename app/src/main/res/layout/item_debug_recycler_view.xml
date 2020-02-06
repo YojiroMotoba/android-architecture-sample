@@ -4,8 +4,8 @@
     <data>
 
         <variable
-            name="activityInfo"
-            type="android.content.pm.ActivityInfo" />
+            name="debugSelfAppInformation"
+            type="com.example.android.githubbrowser.ui.adapter.DebugSelfAppInformation" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +16,7 @@
             android:id="@+id/textView"
             android:layout_width="0dp"
             android:layout_height="30dp"
-            android:text="@{activityInfo.name}"
+            android:text="@{debugSelfAppInformation.className}"
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

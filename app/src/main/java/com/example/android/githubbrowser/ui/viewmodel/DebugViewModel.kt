@@ -1,26 +1,33 @@
 package com.example.android.githubbrowser.ui.viewmodel
 
-import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.githubbrowser.GithubBrowserApp
+import com.example.android.githubbrowser.ui.adapter.DebugSelfAppInformation
 import javax.inject.Inject
 
 class DebugViewModel @Inject constructor(
     private val application: GithubBrowserApp
 ) : ViewModel() {
 
-    var activityInfoList = MutableLiveData<MutableList<ActivityInfo>>()
+    var debugSelfAppInformationList = MutableLiveData<MutableList<DebugSelfAppInformation>>()
 
     init {
-        activityInfoList.value = mutableListOf()
+        debugSelfAppInformationList.value = mutableListOf()
     }
 
     fun searchActivities() {
         val packageManager = application.packageManager
         val packageInfo =
             packageManager.getPackageInfo(application.packageName, PackageManager.GET_ACTIVITIES)
-        activityInfoList.value!!.addAll(packageInfo.activities)
+        packageInfo.activities.forEach { activityInfo ->
+            debugSelfAppInformationList.value!!.add(
+                DebugSelfAppInformation(
+                    activityInfo.packageName,
+                    activityInfo.name.split(".").last()
+                )
+            )
+        }
     }
 }

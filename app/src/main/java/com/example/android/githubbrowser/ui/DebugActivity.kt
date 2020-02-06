@@ -17,10 +17,11 @@ class DebugActivity : InjectorAppCompatActivity(R.layout.activity_debug) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activity_list_RecyclerView.layoutManager = LinearLayoutManager(this)
-        activity_list_RecyclerView.adapter = DebugAdapter(debugViewModel.activityInfoList.value!!)
-        debugViewModel.activityInfoList.observe(this, Observer {
+        activity_list_RecyclerView.adapter =
+            DebugAdapter(debugViewModel.debugSelfAppInformationList.value!!)
+        debugViewModel.debugSelfAppInformationList.observe(this, Observer {
             val adapter = activity_list_RecyclerView.adapter as DebugAdapter?
-            adapter?.setData(debugViewModel.activityInfoList.value!!)
+            adapter?.setData(debugViewModel.debugSelfAppInformationList.value!!)
         })
         debugViewModel.searchActivities()
     }

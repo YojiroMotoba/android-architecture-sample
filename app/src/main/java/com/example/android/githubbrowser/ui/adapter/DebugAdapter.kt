@@ -1,13 +1,12 @@
 package com.example.android.githubbrowser.ui.adapter
 
-import android.content.pm.ActivityInfo
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.githubbrowser.databinding.ItemDebugRecyclerViewBinding
 
 
-class DebugAdapter(private var dataList: List<ActivityInfo>) :
+class DebugAdapter(private var dataList: List<DebugSelfAppInformation>) :
     RecyclerView.Adapter<DebugAdapter.BindingHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -21,13 +20,13 @@ class DebugAdapter(private var dataList: List<ActivityInfo>) :
 
     override fun onBindViewHolder(holder: BindingHolder, position: Int) {
         holder.binding.apply {
-            activityInfo = dataList[position]
+            debugSelfAppInformation = dataList[position]
         }
     }
 
     override fun getItemCount() = dataList.size
 
-    fun setData(items: List<ActivityInfo>) {
+    fun setData(items: List<DebugSelfAppInformation>) {
         dataList = items
         notifyDataSetChanged()
     }
