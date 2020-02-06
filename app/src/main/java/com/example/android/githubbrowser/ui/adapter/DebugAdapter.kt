@@ -9,14 +9,17 @@ import com.example.android.githubbrowser.R
 import com.example.android.githubbrowser.databinding.ItemDebugRecyclerViewBinding
 
 
-class DebugAdapter(private var dataList: List<DebugSelfAppInformation>) :
+class DebugAdapter(
+    private var dataList: List<DebugSelfAppInformation>,
+    private var openClick: (DebugSelfAppInformation) -> Unit
+) :
     RecyclerView.Adapter<DebugAdapter.BindingHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         BindingHolder(parent)
 
     override fun onBindViewHolder(holder: BindingHolder, position: Int) {
-        holder.bind(dataList[position])
+        holder.bind(dataList[position], openClick)
     }
 
     override fun getItemCount() = dataList.size
@@ -39,8 +42,14 @@ class DebugAdapter(private var dataList: List<DebugSelfAppInformation>) :
         )
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: DebugSelfAppInformation) {
+        fun bind(
+            item: DebugSelfAppInformation,
+            openClick: (DebugSelfAppInformation) -> Unit
+        ) {
             binding.debugSelfAppInformation = item
+            binding.openButton.setOnClickListener {
+                openClick(item)
+            }
             binding.executePendingBindings()
         }
     }
