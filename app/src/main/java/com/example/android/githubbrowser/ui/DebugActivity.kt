@@ -1,7 +1,6 @@
 package com.example.android.githubbrowser.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,7 +29,7 @@ class DebugActivity : InjectorAppCompatActivity(R.layout.activity_debug) {
             DebugAdapter(
                 debugViewModel.debugSelfAppInformationList.value!!
             ) { debugSelfAppInformation: DebugSelfAppInformation ->
-                Log.d("AAA", debugSelfAppInformation.className)
+                startActivity(packageManager.getLaunchIntentForPackage(debugSelfAppInformation.packageName))
                 return@DebugAdapter
             }
         debugViewModel.searchActivities()
