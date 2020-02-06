@@ -2,6 +2,7 @@ package com.example.android.githubbrowser.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.githubbrowser.databinding.ItemDebugRecyclerViewBinding
 
@@ -29,6 +30,14 @@ class DebugAdapter(private var dataList: List<DebugSelfAppInformation>) :
     fun setData(items: List<DebugSelfAppInformation>) {
         dataList = items
         notifyDataSetChanged()
+    }
+
+    companion object {
+        @JvmStatic
+        @BindingAdapter("items")
+        fun RecyclerView.bindItems(items: List<DebugSelfAppInformation>) {
+            (adapter as DebugAdapter).setData(items)
+        }
     }
 
     class BindingHolder(var binding: ItemDebugRecyclerViewBinding) :
