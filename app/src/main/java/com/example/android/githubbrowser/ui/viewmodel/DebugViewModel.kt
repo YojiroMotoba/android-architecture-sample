@@ -1,5 +1,7 @@
 package com.example.android.githubbrowser.ui.viewmodel
 
+import android.content.pm.ActivityInfo
+import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,17 +19,20 @@ class DebugViewModel @Inject constructor(
         }
 
     fun searchActivities() {
-        val packageManager = application.packageManager
-        val packageInfo =
-            packageManager.getPackageInfo(application.packageName, PackageManager.GET_ACTIVITIES)
-        packageInfo.activities.forEach { activityInfo ->
+        packageInfo(application.packageManager).activities.forEach {
             debugSelfAppInformationList.value!!.add(
-                DebugSelfAppInformation(
-                    activityInfo.packageName,
-                    activityInfo.name.split(".").last()
-                )
+                convertActivityInfoToDebugInfo(it)
             )
-            debugSelfAppInformationList.postValue(debugSelfAppInformationList.value)
         }
+        debugSelfAppInformationList.postValue(debugSelfAppInformationList.value)
     }
+
+    private fun packageInfo(packageManager: PackageManager): PackageInfo =
+        packageManager.getPackageInfo(application.packageName, PackageManager.GET_ACTIVITIES)
+
+    private fun convertActivityInfoToDebugInfo(activityInfo: ActivityInfo): DebugSelfAppInformation =
+        DebugSelfAppInformation(
+            activityInfo.packageName,
+            activityInfo.name.split(".").last()
+        )
 }

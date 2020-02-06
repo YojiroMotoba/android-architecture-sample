@@ -1,6 +1,5 @@
 package com.example.android.githubbrowser.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
@@ -26,7 +25,6 @@ class DebugAdapter(private var dataList: List<DebugSelfAppInformation>) :
         @JvmStatic
         @BindingAdapter("items")
         fun RecyclerView.bindItems(items: List<DebugSelfAppInformation>) {
-            Log.d("AAA", "RecyclerView.bindItems")
             adapter?.notifyDataSetChanged()
         }
     }
