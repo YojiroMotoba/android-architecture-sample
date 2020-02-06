@@ -11,12 +11,10 @@ class DebugViewModel @Inject constructor(
     private val application: GithubBrowserApp
 ) : ViewModel() {
 
-    var debugSelfAppInformationList = MutableLiveData<MutableList<DebugSelfAppInformation>>()
-    private var _debugSelfAppInformationList: MutableList<DebugSelfAppInformation> = mutableListOf()
-
-    init {
-        debugSelfAppInformationList.value = mutableListOf()
-    }
+    var debugSelfAppInformationList =
+        MutableLiveData<MutableList<DebugSelfAppInformation>>().apply {
+            value = mutableListOf()
+        }
 
     fun searchActivities() {
         val packageManager = application.packageManager
