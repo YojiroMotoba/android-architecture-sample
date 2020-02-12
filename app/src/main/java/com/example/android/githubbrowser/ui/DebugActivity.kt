@@ -38,8 +38,6 @@ class DebugActivity : InjectorAppCompatActivity(R.layout.activity_debug) {
     }
 
     private fun startClickedActivity(debugSelfAppInformation: DebugSelfAppInformation) {
-        Log.d("AAA", "startActivity ${debugSelfAppInformation.packageName}")
-        Log.d("AAA", "startActivity ${debugSelfAppInformation.className}")
         startActivity(Intent().also {
             it.setClassName(
                 debugSelfAppInformation.packageName,
