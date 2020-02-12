@@ -1,6 +1,8 @@
 package com.example.android.githubbrowser.ui
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,11 +30,21 @@ class DebugActivity : InjectorAppCompatActivity(R.layout.activity_debug) {
         activity_list_RecyclerView.adapter =
             DebugAdapter(
                 debugViewModel.debugSelfAppInformationList.value!!
-            ) { debugSelfAppInformation: DebugSelfAppInformation ->
-                startActivity(packageManager.getLaunchIntentForPackage(debugSelfAppInformation.packageName))
-                return@DebugAdapter
+            ) {
+                startClickedActivity(it)
             }
         debugViewModel.searchActivities()
         add_data_button.setOnClickListener { debugViewModel.searchActivities() }
+    }
+
+    private fun startClickedActivity(debugSelfAppInformation: DebugSelfAppInformation) {
+        Log.d("AAA", "startActivity ${debugSelfAppInformation.packageName}")
+        Log.d("AAA", "startActivity ${debugSelfAppInformation.className}")
+        startActivity(Intent().also {
+            it.setClassName(
+                debugSelfAppInformation.packageName,
+                debugSelfAppInformation.name
+            )
+        })
     }
 }

@@ -33,6 +33,7 @@ class DebugViewModel @Inject constructor(
     private fun convertActivityInfoToDebugInfo(activityInfo: ActivityInfo): DebugSelfAppInformation =
         DebugSelfAppInformation(
             activityInfo.packageName,
-            activityInfo.name.split(".").last()
+            activityInfo.name.split(".").last(),
+            activityInfo.name
         )
 }
