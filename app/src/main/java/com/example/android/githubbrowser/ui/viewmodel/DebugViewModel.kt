@@ -14,9 +14,7 @@ class DebugViewModel @Inject constructor(
 ) : ViewModel() {
 
     var debugSelfAppInformationList =
-        MutableLiveData<MutableList<DebugSelfAppInformation>>().apply {
-            value = mutableListOf()
-        }
+        MutableLiveData<MutableList<DebugSelfAppInformation>>(mutableListOf())
 
     fun searchActivities() {
         packageInfo(application.packageManager).activities.forEach {
