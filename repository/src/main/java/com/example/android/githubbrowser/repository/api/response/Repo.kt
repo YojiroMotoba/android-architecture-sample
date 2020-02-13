@@ -1,7 +1,6 @@
 package com.example.android.githubbrowser.repository.api.response
 
-data class
-Repo(
+data class Repo(
     val id: Int,
     val name: String,
     val fullName: String?,
@@ -12,10 +11,7 @@ Repo(
 
     data class Owner(
         val login: String,
-        val url: String?
+        val url: String?,
+        val avatar_url: String?
     )
-
-    companion object {
-        const val UNKNOWN_ID = -1
-    }
 }

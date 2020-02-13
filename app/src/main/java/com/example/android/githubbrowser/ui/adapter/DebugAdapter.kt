@@ -24,14 +24,6 @@ class DebugAdapter(
 
     override fun getItemCount() = dataList.size
 
-    companion object {
-        @JvmStatic
-        @BindingAdapter("items")
-        fun RecyclerView.bindItems(items: List<DebugSelfAppInformation>) {
-            adapter?.notifyDataSetChanged()
-        }
-    }
-
     class BindingHolder(
         private val parent: ViewGroup,
         private val binding: ItemDebugRecyclerViewBinding = DataBindingUtil.inflate(
@@ -53,4 +45,9 @@ class DebugAdapter(
             binding.executePendingBindings()
         }
     }
+}
+
+@BindingAdapter("items")
+fun <T> RecyclerView.bindItems(items: List<T>) {
+    adapter?.notifyDataSetChanged()
 }

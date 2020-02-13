@@ -78,6 +78,18 @@
                     android:padding="3dip"
                     android:text="@{viewModel.repo.fullName}" />
             </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:padding="3dip"
+                    android:text="avatar_url" />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="@{viewModel.repo.owner.avatar_url}" />
+            </TableRow>
         </TableLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
