@@ -2,7 +2,6 @@ package com.example.android.githubbrowser.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.githubbrowser.R
@@ -45,9 +44,4 @@ class DebugAdapter(
             binding.executePendingBindings()
         }
     }
-}
-
-@BindingAdapter("items")
-fun <T> RecyclerView.bindItems(items: List<T>) {
-    adapter?.notifyDataSetChanged()
 }

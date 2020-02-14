@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -11,7 +12,7 @@
             type="com.example.android.githubbrowser.ui.viewmodel.DetailSampleViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.DetailSampleActivity">
@@ -33,64 +34,86 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/query_edit_text" />
 
-        <TableLayout
+        <TextView
+            android:id="@+id/id_title"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:stretchColumns="1"
-            android:visibility="@{viewModel.repo != null ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_button">
+            android:layout_height="wrap_content"
+            android:padding="3dip"
+            android:text="id"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_button"
+            app:layout_constraintWidth_percent="0.3" />
 
-            <TableRow>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:padding="3dip"
+            android:text="@{Integer.toString(viewModel.repo.id)}"
+            app:layout_constraintLeft_toRightOf="@+id/id_title"
+            app:layout_constraintTop_toBottomOf="@+id/search_button"
+            app:layout_constraintWidth_percent="0.7" />
 
-                <TextView
-                    android:padding="3dip"
-                    android:text="id" />
 
-                <TextView
-                    android:gravity="right"
-                    android:padding="3dip"
-                    android:text="@{Integer.toString(viewModel.repo.id)}" />
-            </TableRow>
+        <TextView
+            android:id="@+id/name_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="3dip"
+            android:text="name"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/id_title"
+            app:layout_constraintWidth_percent="0.3" />
 
-            <TableRow>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:padding="3dip"
+            android:text="@{viewModel.repo.name}"
+            app:layout_constraintLeft_toRightOf="@+id/name_title"
+            app:layout_constraintTop_toBottomOf="@+id/id_title"
+            app:layout_constraintWidth_percent="0.7" />
 
-                <TextView
-                    android:padding="3dip"
-                    android:text="name" />
+        <TextView
+            android:id="@+id/full_name_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="3dip"
+            android:text="fullName"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_title"
+            app:layout_constraintWidth_percent="0.3" />
 
-                <TextView
-                    android:gravity="right"
-                    android:padding="3dip"
-                    android:text="@{viewModel.repo.name}" />
-            </TableRow>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:padding="3dip"
+            android:text="@{viewModel.repo.fullName}"
+            app:layout_constraintLeft_toRightOf="@+id/full_name_title"
+            app:layout_constraintTop_toBottomOf="@+id/name_title"
+            app:layout_constraintWidth_percent="0.7" />
 
-            <TableRow>
+        <TextView
+            android:id="@+id/avatar_url_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="3dip"
+            android:text="avatar_url"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/full_name_title"
+            app:layout_constraintWidth_percent="0.3" />
 
-                <TextView
-                    android:padding="3dip"
-                    android:text="fullName" />
-
-                <TextView
-                    android:gravity="right"
-                    android:padding="3dip"
-                    android:text="@{viewModel.repo.fullName}" />
-            </TableRow>
-
-            <TableRow>
-
-                <TextView
-                    android:padding="3dip"
-                    android:text="avatar_url" />
-
-                <TextView
-                    android:gravity="right"
-                    android:padding="3dip"
-                    android:text="@{viewModel.repo.owner.avatar_url}" />
-            </TableRow>
-        </TableLayout>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:padding="3dip"
+            android:text="@{viewModel.repo.owner.avatar_url}"
+            app:layout_constraintLeft_toRightOf="@+id/avatar_url_title"
+            app:layout_constraintTop_toBottomOf="@+id/full_name_title"
+            app:layout_constraintWidth_percent="0.7" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
