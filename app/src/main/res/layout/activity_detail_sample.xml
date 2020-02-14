@@ -34,7 +34,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/query_edit_text" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/id_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             app:layout_constraintTop_toBottomOf="@+id/search_button"
             app:layout_constraintWidth_percent="0.3" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="right"
@@ -55,7 +55,7 @@
             app:layout_constraintWidth_percent="0.7" />
 
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/name_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             app:layout_constraintTop_toBottomOf="@+id/id_title"
             app:layout_constraintWidth_percent="0.3" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="right"
@@ -75,7 +75,7 @@
             app:layout_constraintTop_toBottomOf="@+id/id_title"
             app:layout_constraintWidth_percent="0.7" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/full_name_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
             app:layout_constraintTop_toBottomOf="@+id/name_title"
             app:layout_constraintWidth_percent="0.3" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="right"
@@ -95,7 +95,7 @@
             app:layout_constraintTop_toBottomOf="@+id/name_title"
             app:layout_constraintWidth_percent="0.7" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/avatar_url_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -105,7 +105,8 @@
             app:layout_constraintTop_toBottomOf="@+id/full_name_title"
             app:layout_constraintWidth_percent="0.3" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/avatar_url"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="right"
@@ -113,6 +114,26 @@
             android:text="@{viewModel.repo.owner.avatar_url}"
             app:layout_constraintLeft_toRightOf="@+id/avatar_url_title"
             app:layout_constraintTop_toBottomOf="@+id/full_name_title"
+            app:layout_constraintWidth_percent="0.7" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/avatar_url_image_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="3dip"
+            android:text="avatar_url"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/avatar_url"
+            app:layout_constraintWidth_percent="0.3" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:gravity="right"
+            android:padding="3dip"
+            app:imageUrl="@{viewModel.repo.owner.avatar_url}"
+            app:layout_constraintLeft_toRightOf="@+id/avatar_url_image_title"
+            app:layout_constraintTop_toBottomOf="@+id/avatar_url"
             app:layout_constraintWidth_percent="0.7" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
