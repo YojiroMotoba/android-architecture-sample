@@ -4,14 +4,14 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.android.githubbrowser.repository.api.GithubApi
+import com.example.android.githubbrowser.interactor.GithubInteractor
 import com.example.android.githubbrowser.repository.api.response.Repo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class DetailSampleViewModel @Inject constructor(
-    private val githubApi: GithubApi
+    private val githubInteractor: GithubInteractor
 ) : ViewModel() {
 
     var repo: MutableLiveData<Repo> = MutableLiveData()
@@ -19,9 +19,9 @@ class DetailSampleViewModel @Inject constructor(
     fun search(query: String) {
         viewModelScope.launch(Dispatchers.IO) {
             runCatching {
-                githubApi.searchRepos(query)
+                githubInteractor.searchRepos(query)
             }
-                .onSuccess { searchSuccess(it.items[0]) }
+                .onSuccess { searchSuccess(it[0]) }
                 .onFailure { searchFailure(it) }
         }
     }

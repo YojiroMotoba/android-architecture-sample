@@ -10,9 +10,9 @@ import dagger.Provides
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
-
 @Module
 class RepositoryModule {
+
     @Singleton
     @Provides
     fun provideGithubDatabase(application: GithubBrowserApp): GithubDatabase =

@@ -1,9 +1,6 @@
 package com.example.android.githubbrowser
 
-import com.example.android.githubbrowser.di.ActivityModule
-import com.example.android.githubbrowser.di.RepositoryModule
-import com.example.android.githubbrowser.di.RetrofitModule
-import com.example.android.githubbrowser.di.ViewModelModule
+import com.example.android.githubbrowser.di.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -14,6 +11,7 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AndroidInjectionModule::class,
+        InteractorModule::class,
         ViewModelModule::class,
         ActivityModule::class,
         RetrofitModule::class,
