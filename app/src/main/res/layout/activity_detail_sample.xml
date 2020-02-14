@@ -17,13 +17,22 @@
         android:layout_height="match_parent"
         tools:context=".ui.DetailSampleActivity">
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/exception_button"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text="例外"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/query_edit_text"
             android:layout_width="0dp"
             android:layout_height="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/exception_button" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/search_button"

@@ -25,5 +25,9 @@ class DetailSampleActivity : InjectorAppCompatActivity(R.layout.activity_detail_
         search_button.setOnClickListener {
             detailSampleViewModel.search(query_edit_text.text.toString())
         }
+
+        exception_button.setOnClickListener {
+            detailSampleViewModel.exception()
+        }
     }
 }

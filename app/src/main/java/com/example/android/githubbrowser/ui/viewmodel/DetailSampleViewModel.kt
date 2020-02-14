@@ -26,6 +26,12 @@ class DetailSampleViewModel @Inject constructor(
         }
     }
 
+    fun exception() {
+        viewModelScope.launch(Dispatchers.IO) {
+            githubInteractor.exceptionSample()
+        }
+    }
+
     private fun searchSuccess(repo: Repo) {
         viewModelScope.launch {
             this@DetailSampleViewModel.repo.value = repo
