@@ -1,6 +1,7 @@
 package com.example.android.githubbrowser.ui.viewmodel
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,21 +18,23 @@ class DetailSampleViewModel @Inject constructor(
 
     var repo: MutableLiveData<Repo> = MutableLiveData()
 
-    fun search(query: String) {
-        viewModelScope.launch {
-            runCatching {
-                withContext(Dispatchers.IO) {
-                    githubInteractor.searchRepos(query)
-                }
-            }
-                .onSuccess { searchSuccess(it[0]) }
-                .onFailure { searchFailure(it) }
-        }
-    }
+    val query = MutableLiveData<String>()
 
     fun exception() {
         viewModelScope.launch {
             githubInteractor.exceptionSample()
+        }
+    }
+
+    fun onClickSearch(view: View) {
+        viewModelScope.launch {
+            runCatching {
+                withContext(Dispatchers.IO) {
+                    githubInteractor.searchRepos(query.value!!)
+                }
+            }
+                .onSuccess { searchSuccess(it[0]) }
+                .onFailure { searchFailure(it) }
         }
     }
 
