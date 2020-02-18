@@ -36,7 +36,7 @@ class DetailSampleViewModel @Inject constructor(
     }
 
     private fun searchSuccess(repo: Repo) {
-        this@DetailSampleViewModel.repo.value = repo
+        this.repo.value = repo
     }
 
     private fun searchFailure(t: Throwable) {
