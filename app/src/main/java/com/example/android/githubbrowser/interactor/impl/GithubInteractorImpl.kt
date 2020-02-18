@@ -13,12 +13,13 @@ class GithubInteractorImpl @Inject constructor(
     private val authInteractor: AuthInteractor
 ) : GithubInteractor {
 
-    override suspend fun searchRepos(query: String): List<Repo> {
-        val token = authInteractor.getToken()
-        Log.d("AAA", "token is $token")
-        val res = githubApi.searchRepos(query)
-        return res.items
-    }
+    override suspend fun searchRepos(query: String): List<Repo> =
+        authInteractor.requestWithToken {
+            Log.d("AAA", "requestWithToken is $it")
+            val res = githubApi.searchRepos(query)
+            res.items
+        }
+
 
     override suspend fun exceptionSample() {
         throw SampleException("this is sample exception")
