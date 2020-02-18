@@ -1,6 +1,8 @@
 package com.example.android.githubbrowser
 
 import android.util.Log
+import android.view.View
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.githubbrowser.repository.api.GithubApi
@@ -17,7 +19,9 @@ class MainViewModel @Inject constructor(
     private val tokenDao: TokenDao
 ) : ViewModel() {
 
-    fun searchRepos() {
+    val debugClick = MutableLiveData<Unit>()
+
+    fun clickSearchRepos(view: View) {
         viewModelScope.launch {
             runCatching {
                 withContext(Dispatchers.IO) {
@@ -32,7 +36,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun insert() {
+    fun clickInsert(view: View) {
         viewModelScope.launch {
             runCatching {
                 withContext(Dispatchers.IO) {
@@ -46,7 +50,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun select() {
+    fun clickSelect(view: View) {
         viewModelScope.launch {
             runCatching {
                 withContext(Dispatchers.IO) {
@@ -58,7 +62,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun delete() {
+    fun clickDelete(view: View) {
         viewModelScope.launch {
             runCatching {
                 withContext(Dispatchers.IO) {
@@ -68,6 +72,10 @@ class MainViewModel @Inject constructor(
                 .onSuccess { deleteSuccess(it) }
                 .onFailure { deleteFailure(it) }
         }
+    }
+
+    fun clickDebug(view: View) {
+        debugClick.value = Unit
     }
 
     private fun deleteSuccess(delete_count: Int) {
