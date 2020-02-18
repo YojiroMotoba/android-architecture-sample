@@ -9,6 +9,7 @@ import com.example.android.githubbrowser.repository.db.dao.TokenDao
 import com.example.android.githubbrowser.repository.db.entity.Token
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
@@ -17,11 +18,13 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun searchRepos() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             runCatching {
-                val res = githubApi.searchRepos("test")
-                logtest(res)
-                res
+                withContext(Dispatchers.IO) {
+                    val res = githubApi.searchRepos("test")
+                    logtest(res)
+                    res
+                }
             }
                 .onSuccess { searchReposSuccess(it) }
                 .onFailure { searchReposFailure(it) }
@@ -30,11 +33,13 @@ class MainViewModel @Inject constructor(
     }
 
     fun insert() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             runCatching {
-                tokenDao.insert(Token().also {
-                    it.accessToken = "accessToken"
-                })
+                withContext(Dispatchers.IO) {
+                    tokenDao.insert(Token().also {
+                        it.accessToken = "accessToken"
+                    })
+                }
             }
                 .onSuccess { insertSuccess() }
                 .onFailure { insertFailure(it) }
@@ -42,9 +47,11 @@ class MainViewModel @Inject constructor(
     }
 
     fun select() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             runCatching {
-                tokenDao.select()
+                withContext(Dispatchers.IO) {
+                    tokenDao.select()
+                }
             }
                 .onSuccess { selectSuccess(it) }
                 .onFailure { selectFailure(it) }
@@ -52,9 +59,11 @@ class MainViewModel @Inject constructor(
     }
 
     fun delete() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             runCatching {
-                tokenDao.delete()
+                withContext(Dispatchers.IO) {
+                    tokenDao.delete()
+                }
             }
                 .onSuccess { deleteSuccess(it) }
                 .onFailure { deleteFailure(it) }
