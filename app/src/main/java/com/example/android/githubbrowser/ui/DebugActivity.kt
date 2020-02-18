@@ -2,9 +2,9 @@ package com.example.android.githubbrowser.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.githubbrowser.InjectorAppCompatActivity
 import com.example.android.githubbrowser.R
@@ -26,13 +26,15 @@ class DebugActivity : InjectorAppCompatActivity(R.layout.activity_debug) {
             DataBindingUtil.setContentView(this, R.layout.activity_debug)
         binding.viewModel = debugViewModel
         binding.lifecycleOwner = this
+
         activity_list_RecyclerView.layoutManager = LinearLayoutManager(this)
-        activity_list_RecyclerView.adapter =
-            DebugAdapter(
-                debugViewModel.debugSelfAppInformationList.value!!
-            ) {
-                startClickedActivity(it)
-            }
+        val adapter = DebugAdapter(
+            debugViewModel.debugSelfAppInformationList.value!!
+        )
+        adapter.openClick.observe(this, Observer {
+            startClickedActivity(it)
+        })
+        activity_list_RecyclerView.adapter = adapter
         debugViewModel.searchActivities()
         add_data_button.setOnClickListener { debugViewModel.searchActivities() }
     }
