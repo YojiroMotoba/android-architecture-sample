@@ -24,6 +24,5 @@ class AuthInteractorImpl @Inject constructor(
     override suspend fun <T> requestWithToken(request: suspend (token: String) -> T): T {
         val token = tokenDao.select()
         return request(token!!.accessToken)
-
     }
 }
