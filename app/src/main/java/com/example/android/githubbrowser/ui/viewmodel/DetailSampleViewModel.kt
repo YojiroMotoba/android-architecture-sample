@@ -33,12 +33,19 @@ class DetailSampleViewModel @Inject constructor(
                     githubInteractor.searchRepos(query.value!!)
                 }
             }
+                .map { searchMap(it) }
                 .onSuccess { searchSuccess(it[0]) }
                 .onFailure { searchFailure(it) }
         }
     }
 
+    private fun searchMap(repo: List<Repo>): List<Repo> {
+        Log.d("AAA", "searchMap")
+        return repo
+    }
+
     private fun searchSuccess(repo: Repo) {
+        Log.d("AAA", "searchSuccess")
         this.repo.value = repo
     }
 
