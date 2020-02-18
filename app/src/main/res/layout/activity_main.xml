@@ -8,6 +8,7 @@
         <variable
             name="viewModel"
             type="com.example.android.githubbrowser.MainViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,8 +30,8 @@
             android:id="@+id/request_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{viewModel.clickSearchRepos}"
             android:text="Request"
-            android:onClick="@{viewModel::clickSearchRepos}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/hello_text" />
@@ -39,8 +40,8 @@
             android:id="@+id/insert_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{viewModel.clickInsert}"
             android:text="insert"
-            android:onClick="@{viewModel::clickInsert}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/request_button" />
@@ -49,8 +50,8 @@
             android:id="@+id/select_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{viewModel.clickSelect}"
             android:text="select"
-            android:onClick="@{viewModel::clickSelect}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/insert_button" />
@@ -59,8 +60,8 @@
             android:id="@+id/delete_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{viewModel.clickDelete}"
             android:text="delete"
-            android:onClick="@{viewModel::clickDelete}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/select_button" />
@@ -69,7 +70,7 @@
             android:id="@+id/debug_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{viewModel::clickDebug}"
+            android:onClick="@{viewModel.clickDebug}"
             android:text="debug"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

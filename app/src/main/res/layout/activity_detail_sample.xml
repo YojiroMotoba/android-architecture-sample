@@ -40,7 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:text="検索"
-            android:onClick="@{viewModel::onClickSearch}"
+            android:onClick="@{viewModel.onClickSearch}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/query_edit_text" />

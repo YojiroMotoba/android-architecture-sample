@@ -26,7 +26,7 @@ class DetailSampleViewModel @Inject constructor(
         }
     }
 
-    fun onClickSearch(view: View) {
+    val onClickSearch = View.OnClickListener {
         viewModelScope.launch {
             runCatching {
                 withContext(Dispatchers.IO) {

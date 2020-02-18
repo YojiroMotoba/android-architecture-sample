@@ -21,7 +21,7 @@ class MainViewModel @Inject constructor(
 
     val debugClick = MutableLiveData<Unit>()
 
-    fun clickSearchRepos(view: View) {
+    val clickSearchRepos = View.OnClickListener {
         viewModelScope.launch {
             runCatching {
                 withContext(Dispatchers.IO) {
@@ -36,7 +36,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun clickInsert(view: View) {
+    val clickInsert = View.OnClickListener {
         viewModelScope.launch {
             runCatching {
                 withContext(Dispatchers.IO) {
@@ -50,7 +50,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun clickSelect(view: View) {
+    val clickSelect = View.OnClickListener {
         viewModelScope.launch {
             runCatching {
                 withContext(Dispatchers.IO) {
@@ -62,7 +62,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun clickDelete(view: View) {
+    val clickDelete = View.OnClickListener {
         viewModelScope.launch {
             runCatching {
                 withContext(Dispatchers.IO) {
@@ -74,7 +74,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun clickDebug(view: View) {
+    val clickDebug = View.OnClickListener {
         debugClick.value = Unit
     }
 
