@@ -8,6 +8,7 @@ import com.example.android.githubbrowser.interactor.GithubInteractor
 import com.example.android.githubbrowser.repository.api.response.Repo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class DetailSampleViewModel @Inject constructor(
@@ -17,9 +18,11 @@ class DetailSampleViewModel @Inject constructor(
     var repo: MutableLiveData<Repo> = MutableLiveData()
 
     fun search(query: String) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             runCatching {
-                githubInteractor.searchRepos(query)
+                withContext(Dispatchers.IO) {
+                    githubInteractor.searchRepos(query)
+                }
             }
                 .onSuccess { searchSuccess(it[0]) }
                 .onFailure { searchFailure(it) }
@@ -27,15 +30,13 @@ class DetailSampleViewModel @Inject constructor(
     }
 
     fun exception() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             githubInteractor.exceptionSample()
         }
     }
 
     private fun searchSuccess(repo: Repo) {
-        viewModelScope.launch {
-            this@DetailSampleViewModel.repo.value = repo
-        }
+        this@DetailSampleViewModel.repo.value = repo
     }
 
     private fun searchFailure(t: Throwable) {
