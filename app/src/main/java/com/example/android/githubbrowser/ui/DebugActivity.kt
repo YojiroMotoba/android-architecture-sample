@@ -36,7 +36,6 @@ class DebugActivity : InjectorAppCompatActivity(R.layout.activity_debug) {
         })
         activity_list_RecyclerView.adapter = adapter
         debugViewModel.searchActivities()
-        add_data_button.setOnClickListener { debugViewModel.searchActivities() }
     }
 
     private fun startClickedActivity(debugSelfAppInformation: DebugSelfAppInformation) {
