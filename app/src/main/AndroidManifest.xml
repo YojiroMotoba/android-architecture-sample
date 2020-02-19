@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".ui.DetailSampleActivity" />
         <activity android:name=".ui.DebugActivity" />
+        <activity android:name=".ui.EmptyActivity" />
     </application>
 
 </manifest>
