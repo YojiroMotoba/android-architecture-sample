@@ -20,6 +20,9 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     val debugClick = MutableLiveData<Unit>()
+    val clickDebug = View.OnClickListener {
+        debugClick.value = Unit
+    }
 
     val clickSearchRepos = View.OnClickListener {
         viewModelScope.launch {
@@ -72,10 +75,6 @@ class MainViewModel @Inject constructor(
                 .onSuccess { deleteSuccess(it) }
                 .onFailure { deleteFailure(it) }
         }
-    }
-
-    val clickDebug = View.OnClickListener {
-        debugClick.value = Unit
     }
 
     private fun deleteSuccess(delete_count: Int) {
