@@ -22,7 +22,7 @@ class MainActivity : InjectorAppCompatActivity(R.layout.activity_main) {
         binding.lifecycleOwner = this
         binding.viewModel = mainViewModel
 
-        mainViewModel.debugClick.observe(this, Observer { startDebug() })
+        mainViewModel.clickDebugLiveData.observe(this, Observer { startDebug() })
     }
 
     private fun startDebug() {

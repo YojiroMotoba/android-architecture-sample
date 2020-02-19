@@ -19,9 +19,9 @@ class MainViewModel @Inject constructor(
     private val tokenDao: TokenDao
 ) : ViewModel() {
 
-    val debugClick = MutableLiveData<Unit>()
+    val clickDebugLiveData = MutableLiveData<Unit>()
     val clickDebug = View.OnClickListener {
-        debugClick.value = Unit
+        clickDebugLiveData.value = Unit
     }
 
     val clickSearchRepos = View.OnClickListener {
