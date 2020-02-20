@@ -20,7 +20,7 @@ class SampleFragmentViewModel @Inject constructor(
     val result_id = MutableLiveData<String>()
 
     val onClickSearch = View.OnClickListener {
-        Log.d("AAA", "onClickSearch")
+        Log.d("AAA", "onClickSearch ${query.value!!}")
         viewModelScope.launch {
             kotlin.runCatching {
                 withContext(Dispatchers.IO) {
