@@ -8,6 +8,7 @@ import com.example.android.githubbrowser.R
 import com.example.android.githubbrowser.ui.viewmodel.SampleFragmentViewModel
 
 class SampleFragment : InjectorFragment(R.layout.fragment_sample) {
+
     private val viewModel: SampleFragmentViewModel by viewModels { viewModelFactory }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
