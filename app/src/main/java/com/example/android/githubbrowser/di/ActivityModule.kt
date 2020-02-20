@@ -3,6 +3,7 @@ package com.example.android.githubbrowser.di
 import com.example.android.githubbrowser.MainActivity
 import com.example.android.githubbrowser.ui.DebugActivity
 import com.example.android.githubbrowser.ui.DetailSampleActivity
+import com.example.android.githubbrowser.ui.RoomSampleActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -16,4 +17,7 @@ abstract class ActivityModule {
 
     @ContributesAndroidInjector
     abstract fun contributeDetailSampleActivity(): DetailSampleActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributeRoomSampleActivity(): RoomSampleActivity
 }

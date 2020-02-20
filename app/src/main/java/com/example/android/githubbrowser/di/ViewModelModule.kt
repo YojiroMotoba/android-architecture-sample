@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.android.githubbrowser.MainViewModel
 import com.example.android.githubbrowser.ui.viewmodel.DebugViewModel
 import com.example.android.githubbrowser.ui.viewmodel.DetailSampleViewModel
+import com.example.android.githubbrowser.ui.viewmodel.RoomSampleViewModel
 import com.example.android.githubbrowser.ui.viewmodel.SampleFragmentViewModel
 import dagger.Binds
 import dagger.Module
@@ -33,6 +34,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SampleFragmentViewModel::class)
     abstract fun bindSampleFragmentViewModel(sampleFragmentViewModel: SampleFragmentViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RoomSampleViewModel::class)
+    abstract fun bindRoomSampleViewModel(roomSampleViewModel: RoomSampleViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
