@@ -14,6 +14,7 @@ import javax.inject.Singleton
         InteractorModule::class,
         ViewModelModule::class,
         ActivityModule::class,
+        FragmentModule::class,
         RetrofitModule::class,
         RepositoryModule::class]
 )
