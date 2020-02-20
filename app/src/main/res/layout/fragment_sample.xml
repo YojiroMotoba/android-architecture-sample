@@ -14,14 +14,32 @@
         android:layout_height="match_parent"
         android:background="@android:color/white">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="this is fragment"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/query_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:text="@={viewModel.query}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/search_button"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:onClick="@{viewModel.onClickSearch}"
+            android:text="検索"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/query_edit_text" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/id_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.result_id}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

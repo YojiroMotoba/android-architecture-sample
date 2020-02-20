@@ -27,11 +27,7 @@ class SampleFragment : InjectorFragment(R.layout.fragment_sample) {
             false
         )
         binding.lifecycleOwner = this
+        binding.viewModel = viewModel
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel.search("dd")
     }
 }

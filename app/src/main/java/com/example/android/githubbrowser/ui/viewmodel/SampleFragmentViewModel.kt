@@ -1,9 +1,12 @@
 package com.example.android.githubbrowser.ui.viewmodel
 
 import android.util.Log
+import android.view.View
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.githubbrowser.interactor.GithubInteractor
+import com.example.android.githubbrowser.repository.api.response.Repo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -13,23 +16,28 @@ class SampleFragmentViewModel @Inject constructor(
     private val githubInteractor: GithubInteractor
 ) : ViewModel() {
 
-    fun search(query: String) {
+    val query = MutableLiveData<String>()
+    val result_id = MutableLiveData<String>()
+
+    val onClickSearch = View.OnClickListener {
+        Log.d("AAA", "onClickSearch")
         viewModelScope.launch {
             kotlin.runCatching {
                 withContext(Dispatchers.IO) {
-                    githubInteractor.searchRepos(query)
+                    githubInteractor.searchRepos(query.value!!)
                 }
             }
-                .onSuccess { searchSuccess() }
-                .onFailure { searchFailure() }
+                .onSuccess { searchSuccess(it[0]) }
+                .onFailure { searchFailure(it) }
         }
     }
 
-    private fun searchSuccess() {
-        Log.d("AAA", "searchSuccess")
+    private fun searchSuccess(repo: Repo) {
+        Log.d("AAA", "searchSuccess ${repo.id}")
+        result_id.value = repo.id.toString()
     }
 
-    private fun searchFailure() {
-        Log.d("AAA", "searchFailure")
+    private fun searchFailure(throwable: Throwable) {
+        Log.e("AAA", throwable.message, throwable)
     }
 }
