@@ -5,6 +5,7 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.android.githubbrowser.interactor.AuthInteractor
 import com.example.android.githubbrowser.repository.api.GithubApi
 import com.example.android.githubbrowser.repository.api.response.RepoSearchResponse
 import com.example.android.githubbrowser.repository.db.dao.TokenDao
@@ -16,7 +17,8 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
     private val githubApi: GithubApi,
-    private val tokenDao: TokenDao
+    private val tokenDao: TokenDao,
+    private val authInteractor: AuthInteractor
 ) : ViewModel() {
 
     val clickDebugLiveData = MutableLiveData<Unit>()
@@ -57,6 +59,7 @@ class MainViewModel @Inject constructor(
         viewModelScope.launch {
             runCatching {
                 withContext(Dispatchers.IO) {
+                    Log.d("AAA", authInteractor.getToken())
                     tokenDao.select()
                 }
             }

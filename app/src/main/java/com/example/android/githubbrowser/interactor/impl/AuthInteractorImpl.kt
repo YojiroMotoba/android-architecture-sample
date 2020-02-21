@@ -12,7 +12,7 @@ class AuthInteractorImpl @Inject constructor(
 ) : AuthInteractor {
 
     override suspend fun getToken(): String =
-        tokenDao.select()?.accessToken ?: let {
+        tokenDao.select()?.accessToken ?: run {
             githubApi.searchRepos("test")
             Log.d("AAA", "accessToken is null")
             return "aaa"
