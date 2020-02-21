@@ -39,9 +39,11 @@ class DebugAdapter(
         fun bind(
             item: DebugSelfAppInformation
         ) {
-            binding.debugSelfAppInformation = item
-            binding.onOpenClick = View.OnClickListener { this@DebugAdapter.openClick.value = item }
-            binding.executePendingBindings()
+            binding.let {
+                it.debugSelfAppInformation = item
+                it.onOpenClick = View.OnClickListener { this@DebugAdapter.openClick.value = item }
+                it.executePendingBindings()
+            }
         }
     }
 }

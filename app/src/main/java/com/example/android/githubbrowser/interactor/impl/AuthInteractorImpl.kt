@@ -11,18 +11,13 @@ class AuthInteractorImpl @Inject constructor(
     private val githubApi: GithubApi
 ) : AuthInteractor {
 
-    override suspend fun getToken(): String {
-        val token = tokenDao.select()
-        if (token == null) {
-            val res = githubApi.searchRepos("test")
-            Log.d("AAA", "")
+    override suspend fun getToken(): String =
+        tokenDao.select()?.accessToken ?: let {
+            githubApi.searchRepos("test")
+            Log.d("AAA", "accessToken is null")
             return "aaa"
         }
-        return token.accessToken
-    }
 
-    override suspend fun <T> requestWithToken(request: suspend (token: String) -> T): T {
-        val token = tokenDao.select()
-        return request(token!!.accessToken)
-    }
+    override suspend fun <T> requestWithToken(request: suspend (token: String) -> T): T =
+        request(tokenDao.select()!!.accessToken)
 }

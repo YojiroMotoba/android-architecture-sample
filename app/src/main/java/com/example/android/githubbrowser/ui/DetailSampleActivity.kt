@@ -11,19 +11,20 @@ import kotlinx.android.synthetic.main.activity_detail_sample.*
 
 class DetailSampleActivity : InjectorAppCompatActivity(R.layout.activity_detail_sample) {
 
-    private val detailSampleViewModel: DetailSampleViewModel by viewModels { viewModelFactory }
+    private val viewModel: DetailSampleViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityDetailSampleBinding = DataBindingUtil.setContentView(
+        DataBindingUtil.setContentView<ActivityDetailSampleBinding>(
             this,
             R.layout.activity_detail_sample
-        )
-        binding.lifecycleOwner = this
-        binding.viewModel = detailSampleViewModel
+        ).let {
+            it.lifecycleOwner = this
+            it.viewModel = viewModel
+        }
 
         exception_button.setOnClickListener {
-            detailSampleViewModel.exception()
+            viewModel.exception()
         }
     }
 }

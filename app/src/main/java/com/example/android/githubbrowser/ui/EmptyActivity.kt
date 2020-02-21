@@ -10,11 +10,11 @@ class EmptyActivity : AppCompatActivity(R.layout.activity_empty) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         fragment.setOnClickListener {
-            val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.container, SampleFragment())
-            fragmentTransaction.commit()
+            supportFragmentManager.beginTransaction().let {
+                it.replace(R.id.container, SampleFragment())
+                it.commit()
+            }
         }
     }
 }

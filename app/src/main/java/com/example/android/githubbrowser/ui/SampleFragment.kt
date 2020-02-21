@@ -19,15 +19,15 @@ class SampleFragment : InjectorFragment(R.layout.fragment_sample) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val binding = DataBindingUtil.inflate<FragmentSampleBinding>(
+    ): View? =
+        DataBindingUtil.inflate<FragmentSampleBinding>(
             inflater,
             R.layout.fragment_sample,
             container,
             false
-        )
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
-        return binding.root
-    }
+        ).also {
+            it.lifecycleOwner = this
+            it.viewModel = viewModel
+        }.root
+
 }

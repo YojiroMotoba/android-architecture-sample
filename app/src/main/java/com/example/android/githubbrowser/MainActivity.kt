@@ -14,14 +14,13 @@ class MainActivity : InjectorAppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val binding: ActivityMainBinding = DataBindingUtil.setContentView(
+        DataBindingUtil.setContentView<ActivityMainBinding>(
             this,
             R.layout.activity_main
-        )
-        binding.lifecycleOwner = this
-        binding.viewModel = mainViewModel
-
+        ).let {
+            it.lifecycleOwner = this
+            it.viewModel = mainViewModel
+        }
         mainViewModel.clickDebugLiveData.observe(this, Observer { startDebug() })
     }
 

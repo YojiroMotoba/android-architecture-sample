@@ -21,20 +21,20 @@ class DebugActivity : InjectorAppCompatActivity(R.layout.activity_debug) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val binding: ActivityDebugBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_debug)
-        binding.viewModel = debugViewModel
-        binding.lifecycleOwner = this
+        DataBindingUtil.setContentView<ActivityDebugBinding>(this, R.layout.activity_debug)
+            .let {
+                it.viewModel = debugViewModel
+                it.lifecycleOwner = this
+            }
 
         activity_list_RecyclerView.layoutManager = LinearLayoutManager(this)
-        val adapter = DebugAdapter(
+        activity_list_RecyclerView.adapter = DebugAdapter(
             debugViewModel.debugSelfAppInformationList.value!!
-        )
-        adapter.openClick.observe(this, Observer {
-            startClickedActivity(it)
-        })
-        activity_list_RecyclerView.adapter = adapter
+        ).also {
+            it.openClick.observe(this, Observer {
+                startClickedActivity(it)
+            })
+        }
         debugViewModel.searchActivities()
     }
 
