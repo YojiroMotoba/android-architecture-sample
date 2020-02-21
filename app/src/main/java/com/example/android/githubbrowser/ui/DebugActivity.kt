@@ -15,7 +15,7 @@ import com.example.android.githubbrowser.ui.viewmodel.DebugViewModel
 import kotlinx.android.synthetic.main.activity_debug.*
 
 
-class DebugActivity : InjectorAppCompatActivity(R.layout.activity_debug) {
+class DebugActivity : InjectorAppCompatActivity() {
 
     private val debugViewModel: DebugViewModel by viewModels { viewModelFactory }
 

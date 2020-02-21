@@ -9,7 +9,7 @@ import com.example.android.githubbrowser.databinding.ActivityDetailSampleBinding
 import com.example.android.githubbrowser.ui.viewmodel.DetailSampleViewModel
 import kotlinx.android.synthetic.main.activity_detail_sample.*
 
-class DetailSampleActivity : InjectorAppCompatActivity(R.layout.activity_detail_sample) {
+class DetailSampleActivity : InjectorAppCompatActivity() {
 
     private val viewModel: DetailSampleViewModel by viewModels { viewModelFactory }
 

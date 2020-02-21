@@ -11,7 +11,7 @@ import com.example.android.githubbrowser.R
 import com.example.android.githubbrowser.databinding.FragmentSampleBinding
 import com.example.android.githubbrowser.ui.viewmodel.SampleFragmentViewModel
 
-class SampleFragment : InjectorFragment(R.layout.fragment_sample) {
+class SampleFragment : InjectorFragment() {
 
     private val viewModel: SampleFragmentViewModel by viewModels { viewModelFactory }
 

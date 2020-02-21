@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import com.example.android.githubbrowser.databinding.ActivityMainBinding
 import com.example.android.githubbrowser.ui.DebugActivity
 
-class MainActivity : InjectorAppCompatActivity(R.layout.activity_main) {
+class MainActivity : InjectorAppCompatActivity() {
 
     private val mainViewModel: MainViewModel by viewModels { viewModelFactory }
 

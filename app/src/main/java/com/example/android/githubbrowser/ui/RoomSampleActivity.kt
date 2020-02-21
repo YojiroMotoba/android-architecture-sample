@@ -8,7 +8,7 @@ import com.example.android.githubbrowser.R
 import com.example.android.githubbrowser.databinding.ActivityRoomSampleBinding
 import com.example.android.githubbrowser.ui.viewmodel.RoomSampleViewModel
 
-class RoomSampleActivity : InjectorAppCompatActivity(R.layout.activity_room_sample) {
+class RoomSampleActivity : InjectorAppCompatActivity() {
 
     private val viewModel: RoomSampleViewModel by viewModels { viewModelFactory }
 
