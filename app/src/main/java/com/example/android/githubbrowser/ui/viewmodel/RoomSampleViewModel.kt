@@ -15,7 +15,7 @@ class RoomSampleViewModel @Inject constructor(
     private val tokenDao: TokenDao
 ) : ViewModel() {
 
-    val token: MutableLiveData<Token> = MutableLiveData()
+    val token = MutableLiveData<Token>()
     val accessTokenText = MutableLiveData<String>()
 
     val insert = View.OnClickListener {

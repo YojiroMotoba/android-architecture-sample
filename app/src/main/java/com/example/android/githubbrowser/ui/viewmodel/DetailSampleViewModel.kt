@@ -16,8 +16,7 @@ class DetailSampleViewModel @Inject constructor(
     private val githubInteractor: GithubInteractor
 ) : ViewModel() {
 
-    var repo: MutableLiveData<Repo> = MutableLiveData()
-
+    var repo = MutableLiveData<Repo>()
     val query = MutableLiveData<String>()
 
     fun exception() {
