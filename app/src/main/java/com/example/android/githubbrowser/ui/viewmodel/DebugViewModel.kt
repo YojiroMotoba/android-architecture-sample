@@ -8,10 +8,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.android.githubbrowser.GithubBrowserApp
 import com.example.android.githubbrowser.ui.adapter.DebugSelfAppInformation
-import javax.inject.Inject
 
-class DebugViewModel @Inject constructor(
-    private val application: GithubBrowserApp
+class DebugViewModel(
+    val application: GithubBrowserApp
 ) : ViewModel() {
 
     var debugSelfAppInformationList =

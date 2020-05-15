@@ -10,10 +10,9 @@ import com.example.android.githubbrowser.repository.api.response.Repo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class DetailSampleViewModel @Inject constructor(
-    private val githubInteractor: GithubInteractor
+class DetailSampleViewModel(
+    val githubInteractor: GithubInteractor
 ) : ViewModel() {
 
     var repo = MutableLiveData<Repo>()

@@ -1,11 +1,24 @@
 package com.example.android.githubbrowser
 
-import dagger.android.AndroidInjector
-import dagger.android.HasAndroidInjector
-import dagger.android.support.DaggerApplication
+import android.app.Application
+import com.example.android.githubbrowser.di.*
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
-class GithubBrowserApp : DaggerApplication(), HasAndroidInjector {
+class GithubBrowserApp : Application() {
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
-        DaggerAppComponent.factory().create(this)
+    override fun onCreate() {
+        super.onCreate()
+        startKoin {
+            androidContext(this@GithubBrowserApp)
+            modules(
+                listOf(
+                    retrofitModule,
+                    repositoryModule,
+                    interactorModule,
+                    viewModelModule
+                )
+            )
+        }
+    }
 }

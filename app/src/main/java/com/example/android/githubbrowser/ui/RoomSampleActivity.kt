@@ -1,16 +1,17 @@
 package com.example.android.githubbrowser.ui
 
 import android.os.Bundle
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.android.githubbrowser.InjectorAppCompatActivity
 import com.example.android.githubbrowser.R
 import com.example.android.githubbrowser.databinding.ActivityRoomSampleBinding
 import com.example.android.githubbrowser.ui.viewmodel.RoomSampleViewModel
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class RoomSampleActivity : InjectorAppCompatActivity() {
+class RoomSampleActivity : AppCompatActivity() {
 
-    private val viewModel: RoomSampleViewModel by viewModels { viewModelFactory }
+    private val viewModel: RoomSampleViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
