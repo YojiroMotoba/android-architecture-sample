@@ -1,17 +1,18 @@
 package com.example.android.githubbrowser.ui
 
 import android.os.Bundle
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.example.android.githubbrowser.InjectorAppCompatActivity
 import com.example.android.githubbrowser.R
 import com.example.android.githubbrowser.databinding.ActivityDetailSampleBinding
 import com.example.android.githubbrowser.ui.viewmodel.DetailSampleViewModel
 import kotlinx.android.synthetic.main.activity_detail_sample.*
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DetailSampleActivity : InjectorAppCompatActivity() {
+class DetailSampleActivity : AppCompatActivity() {
 
-    private val viewModel: DetailSampleViewModel by viewModels { viewModelFactory }
+    private val viewModel: DetailSampleViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

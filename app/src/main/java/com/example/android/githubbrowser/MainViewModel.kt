@@ -13,12 +13,11 @@ import com.example.android.githubbrowser.repository.db.entity.Token
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class MainViewModel @Inject constructor(
-    private val githubApi: GithubApi,
-    private val tokenDao: TokenDao,
-    private val authInteractor: AuthInteractor
+class MainViewModel(
+    val githubApi: GithubApi,
+    val tokenDao: TokenDao,
+    val authInteractor: AuthInteractor
 ) : ViewModel() {
 
     val clickDebugLiveData = MutableLiveData<Unit>()

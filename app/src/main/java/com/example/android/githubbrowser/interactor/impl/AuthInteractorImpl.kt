@@ -4,11 +4,10 @@ import android.util.Log
 import com.example.android.githubbrowser.interactor.AuthInteractor
 import com.example.android.githubbrowser.repository.api.GithubApi
 import com.example.android.githubbrowser.repository.db.dao.TokenDao
-import javax.inject.Inject
 
-class AuthInteractorImpl @Inject constructor(
-    private val tokenDao: TokenDao,
-    private val githubApi: GithubApi
+class AuthInteractorImpl(
+    val tokenDao: TokenDao,
+    val githubApi: GithubApi
 ) : AuthInteractor {
 
     override suspend fun getToken(): String =

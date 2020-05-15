@@ -2,15 +2,17 @@ package com.example.android.githubbrowser
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.android.githubbrowser.databinding.ActivityMainBinding
 import com.example.android.githubbrowser.ui.DebugActivity
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : InjectorAppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
-    private val mainViewModel: MainViewModel by viewModels { viewModelFactory }
+    private val mainViewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

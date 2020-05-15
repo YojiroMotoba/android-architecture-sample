@@ -1,45 +1,19 @@
 package com.example.android.githubbrowser.di
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import com.example.android.githubbrowser.GithubBrowserApp
 import com.example.android.githubbrowser.MainViewModel
 import com.example.android.githubbrowser.ui.viewmodel.DebugViewModel
 import com.example.android.githubbrowser.ui.viewmodel.DetailSampleViewModel
 import com.example.android.githubbrowser.ui.viewmodel.RoomSampleViewModel
 import com.example.android.githubbrowser.ui.viewmodel.SampleFragmentViewModel
-import dagger.Binds
-import dagger.Module
-import dagger.multibindings.IntoMap
-import net.zexy.enmusubi.di.ViewModelFactory
+import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 
-@Module
-abstract class ViewModelModule {
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(MainViewModel::class)
-    abstract fun bindSearchViewModel(mainViewModel: MainViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(DebugViewModel::class)
-    abstract fun bindDebugViewModel(debugViewModel: DebugViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(DetailSampleViewModel::class)
-    abstract fun bindDetailSampleViewModel(detailSampleViewModel: DetailSampleViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(SampleFragmentViewModel::class)
-    abstract fun bindSampleFragmentViewModel(sampleFragmentViewModel: SampleFragmentViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(RoomSampleViewModel::class)
-    abstract fun bindRoomSampleViewModel(roomSampleViewModel: RoomSampleViewModel): ViewModel
-
-    @Binds
-    abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
+val viewModelModule = module {
+    viewModel { MainViewModel(get(), get(), get()) }
+    viewModel { DebugViewModel(androidContext() as GithubBrowserApp) }
+    viewModel { DetailSampleViewModel(get()) }
+    viewModel { SampleFragmentViewModel(get()) }
+    viewModel { RoomSampleViewModel(get()) }
 }
