@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class SampleFragmentViewModel(
-    val githubInteractor: GithubInteractor
+    private val githubInteractor: GithubInteractor
 ) : ViewModel() {
 
     val query = MutableLiveData<String>()

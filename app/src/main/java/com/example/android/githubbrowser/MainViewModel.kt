@@ -15,9 +15,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainViewModel(
-    val githubApi: GithubApi,
-    val tokenDao: TokenDao,
-    val authInteractor: AuthInteractor
+    private val githubApi: GithubApi,
+    private val tokenDao: TokenDao,
+    private val authInteractor: AuthInteractor
 ) : ViewModel() {
 
     val clickDebugLiveData = MutableLiveData<Unit>()

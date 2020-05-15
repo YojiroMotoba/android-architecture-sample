@@ -10,7 +10,7 @@ import com.example.android.githubbrowser.GithubBrowserApp
 import com.example.android.githubbrowser.ui.adapter.DebugSelfAppInformation
 
 class DebugViewModel(
-    val application: GithubBrowserApp
+    private val application: GithubBrowserApp
 ) : ViewModel() {
 
     var debugSelfAppInformationList =

@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class RoomSampleViewModel(
-    val tokenDao: TokenDao
+    private val tokenDao: TokenDao
 ) : ViewModel() {
 
     val token = MutableLiveData<Token>()

@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class DetailSampleViewModel(
-    val githubInteractor: GithubInteractor
+    private val githubInteractor: GithubInteractor
 ) : ViewModel() {
 
     var repo = MutableLiveData<Repo>()
