@@ -29,7 +29,7 @@ class DetailSampleViewModel(
         viewModelScope.launch {
             runCatching {
                 withContext(Dispatchers.IO) {
-                    githubInteractor.searchRepos(query.value!!)
+                    searchRepos()
                 }
             }
                 .map { searchMap(it) }
@@ -37,6 +37,8 @@ class DetailSampleViewModel(
                 .onFailure { searchFailure(it) }
         }
     }
+
+    private suspend fun searchRepos(): List<Repo> = githubInteractor.searchRepos(query.value!!)
 
     private fun searchMap(repo: List<Repo>): List<Repo> {
         Log.d("AAA", "searchMap")
