@@ -10,6 +10,7 @@ import com.example.android.githubbrowser.repository.api.response.Repo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 
 class DetailSampleViewModel(
     private val githubInteractor: GithubInteractor
@@ -49,5 +50,8 @@ class DetailSampleViewModel(
 
     private fun searchFailure(t: Throwable) {
         Log.d("AAA", "searchFailure ${t.message}", t)
+        if (t is HttpException) {
+            Log.d("AAA", "code is ${t.code()}", t)
+        }
     }
 }
