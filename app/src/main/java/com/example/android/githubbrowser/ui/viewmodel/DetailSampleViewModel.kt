@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.githubbrowser.interactor.GithubInteractor
 import com.example.android.githubbrowser.repository.api.response.Repo
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
 class DetailSampleViewModel(
@@ -27,18 +27,15 @@ class DetailSampleViewModel(
 
     val onClickSearch = View.OnClickListener {
         viewModelScope.launch {
-            runCatching {
-                withContext(Dispatchers.IO) {
-                    searchRepos()
+            githubInteractor.searchRepos(query.value!!)
+                .catch {
+                    searchFailure(it)
                 }
-            }
-                .map { searchMap(it) }
-                .onSuccess { searchSuccess(it[0]) }
-                .onFailure { searchFailure(it) }
+                .collect {
+                    searchSuccess(it[0])
+                }
         }
     }
-
-    private suspend fun searchRepos(): List<Repo> = githubInteractor.searchRepos(query.value!!)
 
     private fun searchMap(repo: List<Repo>): List<Repo> {
         Log.d("AAA", "searchMap")
@@ -51,7 +48,7 @@ class DetailSampleViewModel(
     }
 
     private fun searchFailure(t: Throwable) {
-        Log.d("AAA", "searchFailure ${t.message}", t)
+        Log.e("AAA", t.message, t)
         if (t is HttpException) {
             Log.d("AAA", "code is ${t.code()}", t)
         }
