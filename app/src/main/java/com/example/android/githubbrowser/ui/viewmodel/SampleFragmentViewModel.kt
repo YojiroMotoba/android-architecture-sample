@@ -7,8 +7,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.githubbrowser.interactor.GithubInteractor
 import com.example.android.githubbrowser.repository.api.response.Repo
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
 class SampleFragmentViewModel(
@@ -21,11 +23,12 @@ class SampleFragmentViewModel(
     val onClickSearch = View.OnClickListener {
         viewModelScope.launch {
             githubInteractor.searchRepos(query.value!!)
-                .catch {
-                    searchFailure(it)
+                .flowOn(Dispatchers.IO)
+                .catch { cause ->
+                    searchFailure(cause)
                 }
-                .collect {
-                    searchSuccess(it[0])
+                .collect { repoList ->
+                    searchSuccess(repoList[0])
                 }
         }
     }

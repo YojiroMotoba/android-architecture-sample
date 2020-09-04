@@ -6,9 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android.githubbrowser.interactor.GithubInteractor
+import com.example.android.githubbrowser.logger
 import com.example.android.githubbrowser.repository.api.response.Repo
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
@@ -27,13 +31,18 @@ class DetailSampleViewModel(
 
     val onClickSearch = View.OnClickListener {
         viewModelScope.launch {
+            logger("start githubInteractor.searchRepos")
             githubInteractor.searchRepos(query.value!!)
-                .catch {
-                    searchFailure(it)
+                .flowOn(Dispatchers.IO)
+                .onEach { repoList ->
+                    logger("onEach")
+                    searchSuccess(repoList[0])
                 }
-                .collect {
-                    searchSuccess(it[0])
+
+                .catch { cause ->
+                    searchFailure(cause)
                 }
+                .collect()
         }
     }
 

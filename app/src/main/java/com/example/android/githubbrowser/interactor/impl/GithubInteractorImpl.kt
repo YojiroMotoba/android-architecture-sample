@@ -1,6 +1,5 @@
 package com.example.android.githubbrowser.interactor.impl
 
-import android.util.Log
 import com.example.android.githubbrowser.exception.SampleException
 import com.example.android.githubbrowser.interactor.AuthInteractor
 import com.example.android.githubbrowser.interactor.GithubInteractor
@@ -17,6 +16,7 @@ class GithubInteractorImpl(
 
     override suspend fun searchRepos(query: String): Flow<List<Repo>> = flow {
         authInteractor.requestWithToken {
+            logger("start githubApi.searchRepos")
             val res = githubApi.searchRepos(query)
             emit(res.items)
         }
