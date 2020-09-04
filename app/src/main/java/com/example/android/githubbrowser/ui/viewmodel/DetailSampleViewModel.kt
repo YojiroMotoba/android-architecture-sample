@@ -38,7 +38,6 @@ class DetailSampleViewModel(
                     logger("onEach")
                     searchSuccess(repoList[0])
                 }
-
                 .catch { cause ->
                     searchFailure(cause)
                 }
