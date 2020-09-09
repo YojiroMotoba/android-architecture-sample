@@ -4,7 +4,7 @@ import android.text.TextUtils
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import coil.load
 
 @BindingAdapter("items")
 fun <T> RecyclerView.dataSetChanged(items: List<T>) {
@@ -16,7 +16,5 @@ fun ImageView.imageURI(url: String?) {
     if (TextUtils.isEmpty(url)) {
         return
     }
-    Glide.with(this)
-        .load(url)
-        .into(this)
+    load(url)
 }
