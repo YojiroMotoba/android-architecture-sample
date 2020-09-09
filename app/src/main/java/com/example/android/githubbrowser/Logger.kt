@@ -1,3 +1,3 @@
 package com.example.android.githubbrowser
 
-fun logger(msg: String) = println("${Thread.currentThread().name} : $msg")
+fun logger(msg: String) = println("githubbrowser app:[${Thread.currentThread().name}]$msg")

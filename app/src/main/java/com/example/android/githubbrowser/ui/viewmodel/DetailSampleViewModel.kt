@@ -9,10 +9,8 @@ import com.example.android.githubbrowser.interactor.GithubInteractor
 import com.example.android.githubbrowser.logger
 import com.example.android.githubbrowser.repository.api.response.Repo
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
@@ -29,6 +27,7 @@ class DetailSampleViewModel(
         }
     }
 
+    @ExperimentalCoroutinesApi
     val onClickSearch = View.OnClickListener {
         viewModelScope.launch {
             logger("start githubInteractor.searchRepos")
@@ -38,7 +37,14 @@ class DetailSampleViewModel(
                     logger("onEach")
                     searchSuccess(repoList[0])
                 }
+                .onStart {
+                    logger("onStart")
+                }
+                .onCompletion {
+                    logger("onCompletion")
+                }
                 .catch { cause ->
+                    logger("catch")
                     searchFailure(cause)
                 }
                 .collect()
