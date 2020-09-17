@@ -80,6 +80,8 @@ dependencies {
     // Koin AndroidX Experimental features
     implementation "org.koin:koin-androidx-ext:$koin_version"
 
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+
     // test
     testImplementation 'junit:junit:4.13'
 
