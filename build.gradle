@@ -1,7 +1,7 @@
 buildscript {
 
     ext {
-        kotlin_version = '1.4.10'
+        kotlin_version = '1.4.21'
         retrofit_version = '2.7.1'
         moshi_version = '1.9.2'
         okhttp_version = '4.3.1'
@@ -20,7 +20,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath 'com.android.tools.build:gradle:4.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta10'
     }
@@ -49,7 +49,6 @@ subprojects {
     }
 
     apply plugin: 'kotlin-android'
-    apply plugin: 'kotlin-android-extensions'
     apply plugin: 'kotlin-kapt'
 
     android {
